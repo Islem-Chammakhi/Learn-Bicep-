@@ -1,0 +1,59 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "languageVersion": "2.0",
+  "contentVersion": "1.0.0.0",
+  "metadata": {
+    "_generator": {
+      "name": "bicep",
+      "version": "0.44.1.10279",
+      "templateHash": "2553832377799383090"
+    }
+  },
+  "variables": {
+    "storage_name": [
+      "s1",
+      "s2",
+      "s3",
+      "s4",
+      "s5",
+      "s6",
+      "s7",
+      "s8"
+    ]
+  },
+  "resources": {
+    "storage": {
+      "@options": {
+        "onlyIfNotExists": []
+      },
+      "type": "Microsoft.Storage/storageAccounts",
+      "apiVersion": "2025-01-01",
+      "name": "mystorage123",
+      "location": "westeurope",
+      "sku": {
+        "name": "Standard_LRS"
+      },
+      "kind": "StorageV2"
+    },
+    "name": {
+      "copy": {
+        "name": "name",
+        "count": "[length(variables('storage_name'))]"
+      },
+      "type": "Microsoft.Storage/storageAccounts",
+      "apiVersion": "2021-02-01",
+      "name": "[variables('storage_name')[copyIndex()]]",
+      "location": "[variables('storage_name')[copyIndex()]]",
+      "kind": "StorageV2",
+      "sku": {
+        "name": "Premium_LRS"
+      }
+    }
+  },
+  "outputs": {
+    "storage_name": {
+      "type": "string",
+      "value": "[if(equals('mystorage123', 'islem'), 'islem', 'mystorage123')]"
+    }
+  }
+}

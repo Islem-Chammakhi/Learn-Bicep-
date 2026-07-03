@@ -1,0 +1,37 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "metadata": {
+    "_generator": {
+      "name": "bicep",
+      "version": "0.44.1.10279",
+      "templateHash": "12651536124954165874"
+    }
+  },
+  "parameters": {
+    "appName": {
+      "type": "string",
+      "maxLength": 23,
+      "metadata": {
+        "description": "The name of the app."
+      }
+    },
+    "location": {
+      "type": "string",
+      "defaultValue": "westeurope"
+    },
+    "db_password": {
+      "type": "securestring",
+      "metadata": {
+        "description": "a secure param."
+      }
+    }
+  },
+  "resources": [],
+  "outputs": {
+    "result": {
+      "type": "string",
+      "value": "[format('{0} will be deployed in {1}', parameters('appName'), parameters('location'))]"
+    }
+  }
+}

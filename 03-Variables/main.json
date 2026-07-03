@@ -1,0 +1,36 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "metadata": {
+    "_generator": {
+      "name": "bicep",
+      "version": "0.44.1.10279",
+      "templateHash": "5610262511334196656"
+    }
+  },
+  "parameters": {
+    "project": {
+      "type": "string"
+    },
+    "env": {
+      "type": "string",
+      "defaultValue": "dev"
+    }
+  },
+  "variables": {
+    "prefix": "[format('{0}-{1}', parameters('project'), parameters('env'))]",
+    "backend": "[format('{0}-backend', variables('prefix'))]",
+    "frontend": "[format('{0}-frontend', variables('prefix'))]"
+  },
+  "resources": [],
+  "outputs": {
+    "backendName": {
+      "type": "string",
+      "value": "[variables('backend')]"
+    },
+    "frontendName": {
+      "type": "string",
+      "value": "[variables('frontend')]"
+    }
+  }
+}
